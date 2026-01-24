@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EVA Air Virtual - 全球航網管理系統</title>
+
+    <link rel="stylesheet" href="css/index-style.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="icon" type="image/png" href="image/images.png">
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+
+<body>
+    <aside class="sidebar">
+        <div class="logo">EVA <span>VIRTUAL</span></div>
+        <nav>
+            <div class="nav-item active">✈️ 航班中心</div>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <div id="map"></div>
+
+        <div class="control-panel">
+            <div class="panel-title">隨機航班產生器</div>
+
+            <div class="route-info">
+                <span class="label">Origin (DEP)</span>
+                <div class="station">RCTP - 台北桃園</div>
+            </div>
+
+            <div class="filter-item">
+                <label class="label">選擇機型</label>
+                <select id="select-ac" class="custom-select">
+                    <option value="ALL">所有機型</option>
+                    <option value="Boeing 777-300ER">B777-300ER</option>
+                    <option value="Boeing 787-10">B787-10</option>
+                    <option value="Boeing 787-9">B787-9</option>
+                    <option value="Airbus A330-300">A330-300</option>
+                </select>
+            </div>
+
+            <div class="filter-item">
+                <label class="label">航程類型</label>
+                <select id="select-duration" class="custom-select">
+                    <option value="ALL">不限時間</option>
+                    <option value="SHORT">短程 (4小時內)</option>
+                    <option value="MED">中長程 (4~8小時)</option>
+                    <option value="LONG">長程 (8小時以上)</option>
+                </select>
+            </div>
+
+            <div id="result-ui" class="route-info result-box">
+                <span class="label" style="color: var(--eva-gold);">Destination (ARR)</span>
+                <div id="dest-name" class="station text-gray-800">---</div>
+                <div id="flight-detail" style="font-size: 12px; color: #666; margin-top: 5px;">---</div>
+            </div>
+
+            <button class="btn-generate" onclick="generateRandomFlight()">
+                🎲 產生隨機任務
+            </button>
+        </div>
+    </main>
+
+    <script src="js/map.js"></script>
+</body>
+
+</html>

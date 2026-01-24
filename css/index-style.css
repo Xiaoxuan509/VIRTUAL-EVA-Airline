@@ -1,0 +1,215 @@
+:root {
+    --eva-green: #00592D;
+    --eva-gold: #A2915A;
+    --sidebar-bg: #121212;
+    --glass-bg: rgba(255, 255, 255, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Microsoft JhengHei", sans-serif;
+}
+
+body {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+    background: #e5e7eb;
+}
+
+/* 左側導覽列 */
+.sidebar {
+    width: 260px;
+    background: var(--sidebar-bg);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    z-index: 20;
+    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.3);
+}
+
+.logo {
+    padding: 30px;
+    font-size: 1.5rem;
+    font-weight: 900;
+    letter-spacing: -1px;
+    border-bottom: 1px solid #222;
+}
+
+.logo span {
+    color: var(--eva-green);
+}
+
+nav {
+    flex: 1;
+    padding: 20px;
+}
+
+.nav-item {
+    padding: 12px 20px;
+    border-radius: 10px;
+    margin-bottom: 8px;
+    color: #888;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.nav-item.active {
+    background: rgba(0, 89, 45, 0.2);
+    color: white;
+    border-left: 4px solid var(--eva-green);
+}
+
+/* 主區域與地圖 */
+.main-content {
+    flex: 1;
+    position: relative;
+}
+
+#map {
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+}
+
+/* 修正後的控制面板 */
+.control-panel {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    width: 340px;
+    z-index: 1000;
+    padding: 25px;
+    border-radius: 20px;
+    background: var(--glass-bg); /* 提高不透明度增加閱讀性 */
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* 讓每個元素之間自動產生間距，防止重疊 */
+}
+
+/* 篩選群組 */
+.filter-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+/* 美化下拉選單 */
+.custom-select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    background: white;
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s;
+    appearance: none; /* 移除原生樣式 */
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+}
+
+.custom-select:hover {
+    border-color: #00592D;
+}
+
+/* 結果區域：動態高度 */
+.result-box {
+    margin-top: 5px;
+    padding: 15px;
+    background: rgba(0, 89, 45, 0.05);
+    border-radius: 12px;
+    border-left: 4px solid #00592D;
+    display: none; /* 預設隱藏，由 JS 控制 */
+}
+
+.panel-title {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.route-info {
+    background: rgba(255, 255, 255, 0.5);
+    padding: 15px;
+    border-radius: 15px;
+    margin-bottom: 15px;
+    border: 1px solid #eee;
+}
+
+.label {
+    font-size: 10px;
+    font-weight: bold;
+    color: #999;
+    text-transform: uppercase;
+}
+
+.station {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--eva-green);
+}
+
+.btn-generate {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 15px;
+    background: var(--eva-green);
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 8px 20px rgba(0, 89, 45, 0.3);
+}
+
+.btn-generate:hover {
+    transform: translateY(-2px);
+    background: #004422;
+}
+
+/* 讓航線有動畫 */
+.eva-route-path {
+    stroke-dasharray: 10;
+    animation: dash 10s linear infinite;
+}
+
+@keyframes dash {
+    from {
+        stroke-dashoffset: 100;
+    }
+
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+.filter-group {
+    margin-bottom: 15px;
+}
+
+.custom-select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    background: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+    color: var(--eva-green);
+    cursor: pointer;
+    outline: none;
+}
+
+.custom-select:focus {
+    border-color: var(--eva-green);
+}
