@@ -161,7 +161,16 @@ function generateRandomFlight() {
         opacity: 0.9
     }).addTo(map);
 
-    map.fitBounds(activeHighlight.getBounds(), { padding: [100, 100], animate: true });
+    const isMob = window.innerWidth <= 768;
+
+    map.fitBounds(activeHighlight.getBounds(), {
+        // [上, 右, 下, 左]
+        // 下方給 450 像素的留白，會強迫地圖把座標推到畫面最上方
+        paddingBottomRight: isMob ? [0, 450] : [50, 50],
+        paddingTopLeft: isMob ? [0, 50] : [50, 100],
+        maxZoom: 5,
+        animate: true
+    });
 
     // 彈出視窗
     L.popup()
@@ -198,4 +207,5 @@ function closeResultPanel() {
     map.setView([25.079, 121.234], 4);
 
     map.closePopup();
+
 }
