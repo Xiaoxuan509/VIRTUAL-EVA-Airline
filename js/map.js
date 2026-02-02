@@ -111,10 +111,10 @@ function generateRandomFlight() {
     // --- 修正後的篩選邏輯：改用總分鐘數 ---
     let filteredRoutes = evaRoutes.filter(route => {
         const matchAC = (selectedAC === "ALL" || route.ac === selectedAC);
-        
+
         const totalMinutes = (route.hr * 60) + route.min;
         let matchDur = true;
-        
+
         if (selectedDur === "SHORT") matchDur = (totalMinutes < 240); // 4小時內
         else if (selectedDur === "MED") matchDur = (totalMinutes >= 240 && totalMinutes < 480); // 4-8小時
         else if (selectedDur === "LONG") matchDur = (totalMinutes >= 480); // 8小時以上
@@ -161,6 +161,7 @@ function generateRandomFlight() {
         opacity: 0.9
     }).addTo(map);
 
+    /// 針對手機版做特別處理
     const isMob = window.innerWidth <= 768;
 
     map.fitBounds(activeHighlight.getBounds(), {
@@ -171,7 +172,6 @@ function generateRandomFlight() {
         maxZoom: 5,
         animate: true
     });
-
     // 彈出視窗
     L.popup()
         .setLatLng(flight.coords)
@@ -207,5 +207,4 @@ function closeResultPanel() {
     map.setView([25.079, 121.234], 4);
 
     map.closePopup();
-
 }
