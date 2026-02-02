@@ -265,9 +265,9 @@ nav {
     border-left: 4px solid var(--eva-gold);
     background: rgba(162, 145, 90, 0.05); /* 淡淡的金邊背景 */
     padding-top: 15px !important;
-
 }
 
+/* 手機版樣式 (螢幕寬度小於 768px) */
 @media (max-width: 768px) {
     body {
         flex-direction: column; /* 讓內容垂直排列 */
